@@ -13,7 +13,8 @@
 %   startTime: The time (in ns) to start the animation from.
 % Returns: None
 function movieMaker(arr, labels, nstxout_compressed, dt, stride, fps, startTime)
-    v = VideoWriter('movie.avi');
+    [file, path] = uiputfile('*.avi');
+    v = VideoWriter(strcat(path,file));
     v.FrameRate = fps;
     open(v);
     
@@ -53,4 +54,6 @@ function movieMaker(arr, labels, nstxout_compressed, dt, stride, fps, startTime)
     
     grid off
     close(v);
+    
+    disp('Done!');
 end
