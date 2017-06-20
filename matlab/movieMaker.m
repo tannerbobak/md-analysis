@@ -1,4 +1,18 @@
-function movieMaker(arr,labels,nstxout_compressed,dt,stride, fps, startTime)
+% Makes an AVI file out of the plot shown in plotMe() and saves to disk.
+% This way it can be viewed fast!
+%
+% Parameters:
+%   arr: 3-D numeric array of inter-residue distances for each frame.
+%   labels: Residue numbers that are interacting.
+%   nstxout_compressed: Number of steps between writing to .xtc, taken from
+%   the .mdp file.
+%   dt: Time step (ps) for the simulation, taken from the .mdp file.
+%   stride: The number of frames skipped between samples when analyzing the
+%   trajectory in Python.
+%   fps: Framerate of the animation.
+%   startTime: The time (in ns) to start the animation from.
+% Returns: None
+function movieMaker(arr, labels, nstxout_compressed, dt, stride, fps, startTime)
     v = VideoWriter('movie.avi');
     v.FrameRate = fps;
     open(v);
@@ -6,6 +20,7 @@ function movieMaker(arr,labels,nstxout_compressed,dt,stride, fps, startTime)
     close all
     grid on
     figure('Position',[10,10,1000,1000]);
+    arr = arr - getMeanMatrix(arr);
     picosecondsPerFrame = dt*nstxout_compressed*stride;
     count = 1;
     if(startTime ~= 0)

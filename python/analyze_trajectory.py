@@ -1,11 +1,6 @@
-import interaction as inter
 import mdtraj as md
-import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plot
 import itertools
-import time
-import pandas as panda
+from interaction import interaction_residues_pool
 
 def main():
     """ Analyze a trajectory for relaxation times. """
@@ -48,7 +43,7 @@ def main():
     trajectory.superpose(trajectory, frame=0)
 
     print('Determining interacting residues...')
-    inter_atoms, inter_res = inter.interaction_residues_pool(bound_crystal_trajectory[0], bound_crystal_trajectory[0], peptide_residues, cutoff)
+    inter_atoms, inter_res = interaction_residues_pool(bound_crystal_trajectory[0], bound_crystal_trajectory[0], peptide_residues, cutoff)
 
     """
     Few options:

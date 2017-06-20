@@ -187,5 +187,3 @@ def main():
         distances[i] = md.rmsd(traj, traj, i)
     print('Max pairwise rmsd: %f nm' % np.max(distances))
     print(distances)
-
-# main()
