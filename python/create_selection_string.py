@@ -5,7 +5,7 @@ import os
 
 
 # residues = range(108, 115)
-residues = [35,37,90,38,70,39,71,72,45,14,56,58,91,92,93]
+residues = [14,35,36,37,38,39,40,45,48,55,56,57,58,69,70,71,72,84,89,90,91,92,93]
 
 string = "residue "
 for i in range(0, len(residues)):

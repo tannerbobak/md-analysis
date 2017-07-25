@@ -9,27 +9,34 @@ def main():
     peptide_residues = range(108,115)
 
     # Standard capture rate is every 0.2ps
+    capture_rate = 2; #ps, nstxout-compressed*dt
     ps_per_frame = 100
-    stride_len = int(ps_per_frame/0.2)
+    stride_len = int(ps_per_frame/capture_rate)
     cutoff = 0.25  # nm
 
     """
     Where to output the distance matrix.
     """
-    output_path = '../../output/vanilla/no-peptide/distanceData_' + str(cutoff*1000) + 'pm_' + str(ps_per_frame) + 'ps.txt'
+    output_path = 'C:/Users/Tanner/Documents/Boulder/Research/Shirts Group/sh2/' \
+                  'output/vanilla/peptide/100ns/distanceData_' + str(cutoff*1000) + \
+                  'pm_' + str(ps_per_frame) + 'ps.txt'
 
     """
     The output files from GROMACS
     """
-    trajectory_file = '../../output/vanilla/no-peptide/sh2b1-trjconv_no_solvent.xtc'
-    topology_file = '../../output/vanilla/no-peptide/sh2b1-trjconv_no_solvent.gro'
+    trajectory_file = 'C:/Users/Tanner/Documents/Boulder/Research/Shirts Group/sh2/' \
+                      'output/vanilla/peptide/100ns/sh2b1-trjconv_no_solvent.xtc'
+    topology_file = 'C:/Users/Tanner/Documents/Boulder/Research/Shirts Group/sh2/' \
+                    'output/vanilla/peptide/100ns/sh2b1-trjconv_no_solvent.gro'
 
     """
     These files should have their first frame contain the bound crystal structure so 
     relevant residues near the peptide can be identified.
     """
-    bound_crystal_trajectory_file = '../../output/vanilla/peptide/sh2b1-trjconv_no_solvent.xtc'
-    bound_crystal_topology_file = '../../output/vanilla/peptide/sh2b1-trjconv_no_solvent.gro'
+    bound_crystal_trajectory_file = 'C:/Users/Tanner/Documents/Boulder/Research/Shirts Group/sh2/' \
+                                    'output/vanilla/peptide/100ns/sh2b1-trjconv_no_solvent.xtc'
+    bound_crystal_topology_file = 'C:/Users/Tanner/Documents/Boulder/Research/Shirts Group/sh2/' \
+                                  'output/vanilla/peptide/100ns/sh2b1-trjconv_no_solvent.gro'
 
     # Just need the first frame of the crystal
     print('Reading trajectories...')
@@ -45,6 +52,8 @@ def main():
 
     print('Computing contacts...')
     contacts_array = list(itertools.product(inter_res, inter_res))  # There are n^2 possible contacts
+
+    # Calculates minimum distance between heavy atoms
     distances, residue_pairs = md.compute_contacts(trajectory, contacts=contacts_array,
                                                    scheme='closest-heavy', ignore_nonprotein=True)
 

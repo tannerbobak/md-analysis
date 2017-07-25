@@ -50,10 +50,14 @@ def remove_solvent(trajectory_file, topology_file):
 
 """
 # Stuff for running from file. Commented out to use this file as a module.
+"""
+
 
 def main():
-    trajectory_file = '../output/no-peptide/sh2b1-trjconv.xtc'
-    topology_file = '../output/no-peptide/sh2b1.gro'
+    trajectory_file = 'C:/Users/Tanner/Documents/Boulder/Research/Shirts Group/sh2/' \
+                      'output/vanilla/peptide/100ns/sh2b1-trjconv.xtc'
+    topology_file = 'C:/Users/Tanner/Documents/Boulder/Research/Shirts Group/sh2/' \
+                    'output/vanilla/peptide/100ns/sh2b1.gro'
     # start = 0
     # end = 10
     # clip(trajectory_file, topology_file, start, end)
@@ -61,4 +65,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+"""
+
 """
